@@ -7,9 +7,11 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  Release        : w/o debug symbols, w/ optimization
 #  RelWithDebInfo : w/ debug symbols, w/ optimization
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-set(ROS_BUILD_TYPE Debug)
+set(ROS_BUILD_TYPE Release)
 
 rosbuild_init()
+
+add_definitions(-std=c++11  -Wno-enum-compare -Wno-unused-local-typedefs -gdwarf-2)
 
 #set the default path for built executables to the "bin" directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -40,6 +42,9 @@ include_directories(${EIGEN_INCLUDE_DIR})
 
 
 add_executable(test_pe src/test_pe.cpp)
+
+add_executable(TestTypedExpresssions src/TestTypedExpressions.cpp)
+
 
 # add_executable(test_exp src/test.cpp 
 #     src/Expressions.cpp
