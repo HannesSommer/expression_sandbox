@@ -8,6 +8,7 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  RelWithDebInfo : w/ debug symbols, w/ optimization
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 set(ROS_BUILD_TYPE Release)
+#set(ROS_BUILD_TYPE Debug)
 
 rosbuild_init()
 
@@ -44,6 +45,7 @@ include_directories(${EIGEN_INCLUDE_DIR})
 add_executable(test_pe src/test_pe.cpp)
 
 add_executable(TestTypedExpresssions src/TestTypedExpressions.cpp)
+set_target_properties(TestTypedExpresssions PROPERTIES COMPILE_FLAGS "-fverbose-asm -Wa,-adhln=TestTypedExpresssions.S,")
 
 
 # add_executable(test_exp src/test.cpp 
